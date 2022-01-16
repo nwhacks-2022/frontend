@@ -3,9 +3,11 @@ import axios from "axios";
 import styles from "./HistoryPage.module.css";
 import pageStyles from "./Page.module.css";
 
+import robotMonocleImg from "./image/robots/monocle.png";
 import robotSadTearImg from "./image/robots/sadTear.png";
 import robotBruhImg from "./image/robots/bruh.png";
 import robotUghImg from "./image/robots/ugh.png";
+import robotSmileImg from "./image/robots/smile.png";
 import robotSparkleImg from "./image/robots/sparkle.png";
 import robotRainbowImg from "./image/robots/rainbow.png";
 
@@ -80,19 +82,27 @@ const HistoryPage = (props) => {
 
 const HistoryItem = (props) => {
   const getImg = () => {
-    if (props.wpm < 100) {
-      return robotUghImg;
-    } else if (props.wpm < 130) {
-      return robotSparkleImg;
-    } else if (props.wpm <= 150) {
-      return robotRainbowImg;
-    } else if (props.wpm <= 200) {
-      return robotSparkleImg;
-    } else if (props.wpm <= 230) {
-      return robotUghImg;
-    } else {
+    let s = score();
+    if (s < 0) {
+      return robotMonocleImg;
+    } else if (s < 1) {
       return robotBruhImg;
+    } else if (s < 2) {
+      return robotUghImg;
+    } else if (s < 3) {
+      return robotSmileImg;
+    } else if (s < 4) {
+      return robotSparkleImg;
+    } else {
+      return robotRainbowImg;
     }
+  };
+  const renderWPM = () => {
+    return (
+      <div className={styles["stat-small"]} style={{ marginTop: "0.5em" }}>
+        WPM: {Math.round(props.wpm)}
+      </div>
+    );
   };
   const renderVariance = () => {
     if (props.variance < 0) {
@@ -100,12 +110,19 @@ const HistoryItem = (props) => {
     }
     if (props.variance === undefined) {
       return (
-        <div className={styles["variance"]}>Calculating SD of Speed...</div>
+        <div className={styles["stat-small"]}>Calculating SD of Speed...</div>
       );
     }
     return (
-      <div className={styles["variance"]}>
+      <div className={styles["stat-small"]}>
         SD of Speed: {Math.round(Math.sqrt(props.variance))}
+      </div>
+    );
+  };
+  const renderScore = () => {
+    return (
+      <div className={styles["stat-big"]}>
+        Overall Score: {score() < 0 ? "N/A" : Math.round(score() * 10) / 10}
       </div>
     );
   };
@@ -113,9 +130,10 @@ const HistoryItem = (props) => {
   const score = () => {
     let wpmScore = Math.min(2.5, 30 / Math.abs(140 - props.wpm));
     let varianceScore = wpmScore;
-    if (props.variance && props.variance >= 0) {
-      varianceScore = Math.min(2.5, 30 / Math.sqrt(props.variance));
+    if (wpmScore === 0 || !props.variance || props.variance < 0) {
+      return -1;
     }
+    varianceScore = Math.min(2.5, 30 / Math.sqrt(props.variance));
     return wpmScore + varianceScore;
   };
 
@@ -130,11 +148,9 @@ const HistoryItem = (props) => {
       <audio controls>
         <source src={props.audioSrc} type="audio/wav" />
       </audio>
-      <div className={styles["variance"]}>WPM: {Math.round(props.wpm)}</div>
+      {renderWPM()}
       {renderVariance()}
-      <div className={styles["wpm"]}>
-        Overall Score: {Math.round(score() * 10) / 10}
-      </div>
+      {renderScore()}
     </div>
   );
 };

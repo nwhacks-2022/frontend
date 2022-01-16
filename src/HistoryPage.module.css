@@ -32,13 +32,13 @@
   margin-bottom: 0;
 }
 
-.history-item-wrapper .wpm {
+.history-item-wrapper .stat-big {
   text-align: center;
   font-size: 1.7em;
   font-family: "Baloo Chettan 2", sans-serif;
 }
 
-.history-item-wrapper .variance {
+.history-item-wrapper .stat-small {
   text-align: center;
   font-size: 1.2em;
   font-family: "Baloo Chettan 2", sans-serif;

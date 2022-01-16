@@ -3,7 +3,6 @@ import axios from "axios";
 import styles from "./QuestionsPage.module.css";
 import pageStyles from "./Page.module.css";
 
-import robotMonocleImg from "./image/robots/monocle.png";
 import robotCryImg from "./image/robots/cry.png";
 
 const QuestionsPage = (props) => {
