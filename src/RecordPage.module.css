@@ -1,8 +1,5 @@
 .question-wrapper {
   flex-grow: 1;
-}
-
-.question-wrapper > div {
   border-left: 4px solid #4193bf;
   padding: 0.4em 0.8em;
 }
