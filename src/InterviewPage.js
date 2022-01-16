@@ -77,8 +77,10 @@ const RecordPage = (props) => {
   const onRecordStop = async (recordedBlob) => {
     clearInterval(recordingEvent);
     setDuration(0);
+    setLoading(true);
     let data = await uploadRecording(recordedBlob);
     nextQuestion(true);
+    setLoading(false);
   };
 
   const uploadRecording = (recordedBlob) => {
@@ -109,7 +111,7 @@ const RecordPage = (props) => {
     return (
       <div className={pageStyles["loading-wrapper"]}>
         <div className={pageStyles["spinner"]} />
-        <div>Preparing questions...</div>
+        {/* <div>Preparing questions...</div> */}
       </div>
     );
   }

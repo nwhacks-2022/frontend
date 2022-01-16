@@ -34,7 +34,7 @@ const HistoryPage = (props) => {
     return (
       <div className={pageStyles["loading-wrapper"]}>
         <div className={pageStyles["spinner"]} />
-        <div>Retrieving history...</div>
+        {/* <div>Retrieving history...</div> */}
       </div>
     );
   }
