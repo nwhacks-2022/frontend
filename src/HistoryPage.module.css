@@ -1,0 +1,40 @@
+.list-wrapper {
+  margin-right: -1.5em;
+  margin-bottom: -1.5em;
+}
+
+.list-wrapper > div {
+  padding-right: 1.5em;
+  padding-bottom: 1.5em;
+  gap: 1.5em;
+}
+
+.history-item-wrapper > div {
+  min-height: 64px;
+  padding-left: 1em;
+}
+
+.history-item-wrapper img {
+  height: 64px;
+  float: left;
+  /* margin-top: -0.5em;
+  margin-left: -1em;
+  margin-right: 1em; */
+  margin-left: -1em;
+  margin-right: 1em;
+  shape-outside: ellipse(50% 35%);
+}
+
+.history-item-wrapper audio {
+  width: 100%;
+}
+
+.history-item-wrapper h1,
+.history-item-wrapper h4 {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+
+.history-item-wrapper .wpm {
+  text-align: center;
+}

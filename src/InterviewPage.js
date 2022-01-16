@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ReactMic } from "react-mic";
 import axios from "axios";
 import pageStyles from "./Page.module.css";
-import styles from "./RecordPage.module.css";
+import styles from "./InterviewPage.module.css";
 
+import robotCryImg from "./image/robots/cry.png";
 import robotSmileImg from "./image/robots/smile.png";
 import robotRecordingImg from "./image/robots/recording.png";
 
@@ -11,19 +12,29 @@ let recordingEvent;
 
 const RecordPage = (props) => {
   const [loading, setLoading] = useState(true);
+  const [questionsAnswered, setQuestionsAnswered] = useState(-1);
   const [questionList, setQuestionList] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(undefined);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [duration, setDuration] = useState(0);
   const [recording, setRecording] = useState(false);
 
   useEffect(() => {
     const func = async () => {
       setQuestionList(await getQuestions(3));
+      setQuestionsAnswered(0);
       setCurrentQuestionIndex(0);
       setTimeout(() => setLoading(false), Math.random() * 1000 + 400);
     };
     func();
   }, []);
+
+  useEffect(() => {
+    if (questionList.length !== 0) {
+      if (currentQuestionIndex === questionList.length) {
+        props.viewHistory(questionsAnswered);
+      }
+    }
+  }, [currentQuestionIndex]);
 
   const durationAsString = () => {
     let minutes = Math.floor(duration / 60)
@@ -38,13 +49,13 @@ const RecordPage = (props) => {
   };
 
   const getCurrentQuestion = () => {
-    if (currentQuestionIndex === undefined) {
-      return "ERROR: No questions found D:";
-    }
     return questionList[currentQuestionIndex];
   };
 
-  const nextQuestion = () => {
+  const nextQuestion = (solved) => {
+    if (solved) {
+      setQuestionsAnswered((prevState) => prevState + 1);
+    }
     setCurrentQuestionIndex((prevState) => prevState + 1);
   };
 
@@ -67,8 +78,7 @@ const RecordPage = (props) => {
     clearInterval(recordingEvent);
     setDuration(0);
     let data = await uploadRecording(recordedBlob);
-    // console.log(data);
-    nextQuestion();
+    nextQuestion(true);
   };
 
   const uploadRecording = (recordedBlob) => {
@@ -77,8 +87,8 @@ const RecordPage = (props) => {
         .then((res) => res.blob())
         .then(async (blob) => {
           // Create formdata.
-          let file = new File([blob], "test.webm", {
-            type: "audio/webm",
+          let file = new File([blob], "recording.webm", {
+            type: recordedBlob.blob.type,
           });
           let formData = new FormData();
           formData.append("question", getCurrentQuestion());
@@ -104,10 +114,28 @@ const RecordPage = (props) => {
     );
   }
 
+  if (!questionList || questionList.length === 0) {
+    return (
+      <div className={pageStyles["error-wrapper"]}>
+        <img src={robotCryImg} alt="robot" />
+        <div>
+          No interview questions found 😭
+          <br />
+          Sorry for the troubles...
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={pageStyles["wrapper"]}>
       <h2>Question</h2>
-      <div className={styles["question-wrapper"]}>
+      <div
+        className={[
+          styles["question-wrapper"],
+          pageStyles["scroll-wrapper"],
+        ].join(" ")}
+      >
         <div>
           <div>{getCurrentQuestion()}</div>
         </div>
@@ -118,7 +146,7 @@ const RecordPage = (props) => {
         onStop={onRecordStop}
         channelCount={1}
         strokeColor="#4193bf"
-        backgroundColor="#fffdf6"
+        backgroundColor="#ffffff"
       />
       <div />
       <img
@@ -136,7 +164,12 @@ const RecordPage = (props) => {
       >
         {recording ? "Finish Recording" : "Record Answer"}
       </button>
-      <button className={styles["skip-button"]}>Skip Question</button>
+      <button
+        className={styles["skip-button"]}
+        onClick={() => nextQuestion(false)}
+      >
+        Skip Question
+      </button>
     </div>
   );
 };

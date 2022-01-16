@@ -6,29 +6,33 @@ const Menu = (props) => {
     <div className={styles["wrapper"]}>
       <ul className={styles["menu-item"]}>
         <MenuItem
-          page="record"
+          selected={props.page === "interview"}
+          page="interview"
           setPage={props.setPage}
           icon="comment"
           name="Interview"
         />
         <MenuItem
+          selected={props.page === "questions"}
           page="questions"
           setPage={props.setPage}
           icon="clipboard"
           name="Questions"
         />
         <MenuItem
-          page="recordings"
+          selected={props.page === "history"}
+          page="history"
           setPage={props.setPage}
-          icon="microphone"
-          name="Recordings"
+          icon="tasks"
+          name="Review"
         />
-        <MenuItem
+        {/* <MenuItem
+          selected={props.page === "settings"}
           page="settings"
           setPage={props.setPage}
           icon="cog"
           name="Settings"
-        />
+        /> */}
       </ul>
     </div>
   );
@@ -36,7 +40,10 @@ const Menu = (props) => {
 
 const MenuItem = (props) => {
   return (
-    <li onClick={() => props.setPage(props.page)}>
+    <li
+      onClick={() => props.setPage(props.page)}
+      className={props.selected ? styles["selected"] : null}
+    >
       <div>
         <i className={`fas fa-${props.icon}`}></i>
       </div>

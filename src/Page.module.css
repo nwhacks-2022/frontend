@@ -16,11 +16,25 @@
   gap: 1.5em;
 }
 
+.wrapper > h2 {
+  width: fit-content;
+  /* border-bottom: 4px solid #4193bf40; */
+}
+.wrapper > h2::after {
+  display: block;
+  content: "";
+  width: calc(100% - 0.6em);
+  margin-left: 0.4em;
+  border-bottom: 4px solid #4193bf40;
+  transform: rotate(-2deg);
+}
+
 .wrapper > * {
   margin: 0;
 }
 
-.loading-wrapper {
+.loading-wrapper,
+.error-wrapper {
   height: 100%;
   gap: 1.5em;
   display: flex;
@@ -36,4 +50,26 @@
   border-radius: 50%;
   border-top-color: #4193bf;
   animation: 1.5s linear infinite spinner;
+}
+
+.error-wrapper > img {
+  width: 35%;
+}
+
+.error-wrapper > div {
+  text-align: center;
+}
+
+.scroll-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: auto;
+  height: 0; /* dunno why this works */
 }

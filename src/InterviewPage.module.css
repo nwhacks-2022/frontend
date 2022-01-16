@@ -1,15 +1,3 @@
-.question-wrapper {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.question-wrapper > div {
-  flex-grow: 1;
-  overflow: auto;
-  height: 0; /* dunno why this works */
-}
-
 .question-wrapper > div > div {
   border-left: 4px solid #4193bf;
   padding: 0.4em 0.8em;
@@ -24,7 +12,7 @@
   padding: 1em;
   border-radius: 2em;
   background-color: #4193bf;
-  color: #fff9e6;
+  color: #ffffff;
   font-weight: bold;
   border: 3px solid #1c658b;
   outline: none;
@@ -43,8 +31,4 @@
   outline: none;
   color: #4193bf;
   font-weight: bold;
-}
-
-.skip-button:hover {
-  color: #1c658b;
 }
