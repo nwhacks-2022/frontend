@@ -1,0 +1,41 @@
+.question-wrapper {
+  flex-grow: 1;
+}
+
+.question-wrapper > div {
+  border-left: 4px solid #4193bf;
+  padding: 0.4em 0.8em;
+}
+
+.time-elapsed {
+  font-size: 3em;
+  text-align: center;
+}
+
+.record-button {
+  padding: 1em;
+  border-radius: 2em;
+  background-color: #4193bf;
+  color: #fff9e6;
+  font-weight: bold;
+  border: 3px solid #1c658b;
+  outline: none;
+}
+
+.record-button:hover {
+  background-color: #1c658b;
+}
+
+.skip-button {
+  width: fit-content;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  outline: none;
+  color: #4193bf;
+  font-weight: bold;
+}
+
+.skip-button:hover {
+  color: #1c658b;
+}

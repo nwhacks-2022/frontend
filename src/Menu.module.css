@@ -1,0 +1,31 @@
+.wrapper {
+  color: #fffdf6;
+}
+
+.wrapper > ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 100%;
+  background: #4193bf;
+  overflow: auto;
+}
+
+.menu-item > li {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.6em 1em;
+}
+
+.menu-item > li > div:nth-child(1) {
+  font-size: 16px;
+}
+.menu-item > li > div:nth-child(2) {
+  font-size: 10px;
+}

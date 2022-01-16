@@ -1,11 +1,23 @@
-import './App.css';
+import { useState } from "react";
+import Menu from "./Menu";
+import RecordPage from "./RecordPage";
+import styles from "./App.module.css";
 
-function App() {
+const App = () => {
+  const [page, setPage] = useState("record");
+
+  const renderPage = () => {
+    if (page === "record") {
+      return <RecordPage />;
+    }
+  };
+
   return (
-    <div className="App">
-      HELLO WORLD
+    <div className={styles["wrapper"]}>
+      <div style={{ flexGrow: 1 }}>{renderPage()}</div>
+      <Menu setPage={setPage} />
     </div>
   );
-}
+};
 
 export default App;
