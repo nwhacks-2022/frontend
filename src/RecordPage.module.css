@@ -16,7 +16,7 @@
 }
 
 .time-elapsed {
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
 }
 
@@ -30,8 +30,9 @@
   outline: none;
 }
 
-.record-button:hover {
-  background-color: #1c658b;
+.record-button.recording {
+  background-color: #e25050;
+  border: 3px solid #862c2c;
 }
 
 .skip-button {

@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Menu.module.css";
 
 const Menu = (props) => {
@@ -7,19 +8,19 @@ const Menu = (props) => {
         <MenuItem
           page="record"
           setPage={props.setPage}
-          icon="microphone"
-          name="Practice"
+          icon="comment"
+          name="Interview"
         />
         <MenuItem
           page="questions"
           setPage={props.setPage}
-          icon="question"
+          icon="clipboard"
           name="Questions"
         />
         <MenuItem
           page="recordings"
           setPage={props.setPage}
-          icon="record-vinyl"
+          icon="microphone"
           name="Recordings"
         />
         <MenuItem

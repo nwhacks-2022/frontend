@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Menu from "./Menu";
 import RecordPage from "./RecordPage";
 import styles from "./App.module.css";
