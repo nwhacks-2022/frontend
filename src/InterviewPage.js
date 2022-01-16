@@ -93,7 +93,7 @@ const RecordPage = (props) => {
             type: recordedBlob.blob.type,
           });
           let formData = new FormData();
-          formData.append("question", getCurrentQuestion());
+          formData.append("question", getCurrentQuestion()); // FIXME: getCurrentQuestion() grabs the wrong question for some reason.
           formData.append("file", file);
           // Upload audio.
           let res = await axios({

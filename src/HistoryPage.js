@@ -128,12 +128,12 @@ const HistoryItem = (props) => {
   };
 
   const score = () => {
-    let wpmScore = Math.min(2.5, 30 / Math.abs(140 - props.wpm));
+    let wpmScore = Math.min(1.5, 30 / Math.abs(140 - props.wpm));
     let varianceScore = wpmScore;
     if (wpmScore === 0 || !props.variance || props.variance < 0) {
       return -1;
     }
-    varianceScore = Math.min(2.5, 30 / Math.sqrt(props.variance));
+    varianceScore = Math.min(3.5, 50 / Math.sqrt(props.variance));
     return wpmScore + varianceScore;
   };
 
