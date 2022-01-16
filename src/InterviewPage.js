@@ -150,20 +150,21 @@ const RecordPage = (props) => {
         backgroundColor="#ffffff"
       />
       <div />
-      <img
-        src={recording ? robotRecordingImg : robotSmileImg}
-        width="64px"
-        style={{ position: "absolute", bottom: "160px", right: "48px" }}
-        alt="robot"
-      />
       <button
         className={[
           styles["record-button"],
           recording ? styles["recording"] : null,
         ].join(" ")}
+        style={{ position: "relative" }}
         onClick={handleRecording}
       >
         {recording ? "Finish Recording" : "Record Answer"}
+        <img
+          src={recording ? robotRecordingImg : robotSmileImg}
+          width="64px"
+          alt="robot"
+          style={{ position: "absolute", bottom: "80%", right: "1em" }}
+        />
       </button>
       <button
         className={styles["skip-button"]}
