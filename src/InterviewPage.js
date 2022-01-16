@@ -20,10 +20,10 @@ const RecordPage = (props) => {
 
   useEffect(() => {
     const func = async () => {
-      setQuestionList(await getQuestions(3));
+      setQuestionList(await getQuestions(5));
       setQuestionsAnswered(0);
       setCurrentQuestionIndex(0);
-      setTimeout(() => setLoading(false), Math.random() * 1000 + 400);
+      setTimeout(() => setLoading(false), Math.random() * 500 + 400);
     };
     func();
   }, []);
@@ -111,7 +111,6 @@ const RecordPage = (props) => {
     return (
       <div className={pageStyles["loading-wrapper"]}>
         <div className={pageStyles["spinner"]} />
-        {/* <div>Preparing questions...</div> */}
       </div>
     );
   }

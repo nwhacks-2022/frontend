@@ -17,7 +17,7 @@ const HistoryPage = (props) => {
     const func = async () => {
       setHistory(await getHistory(props.itemCount));
       props.setItemCount(-1);
-      setTimeout(() => setLoading(false), Math.random() * 1000 + 400);
+      setTimeout(() => setLoading(false), Math.random() * 500 + 400);
     };
     func();
   }, []);
@@ -34,7 +34,6 @@ const HistoryPage = (props) => {
     return (
       <div className={pageStyles["loading-wrapper"]}>
         <div className={pageStyles["spinner"]} />
-        {/* <div>Retrieving history...</div> */}
       </div>
     );
   }

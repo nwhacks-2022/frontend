@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Menu from "./Menu";
 import InterviewPage from "./InterviewPage";
+import QuestionsPage from "./QuestionsPage";
 import HistoryPage from "./HistoryPage";
 import styles from "./App.module.css";
 
@@ -16,6 +17,9 @@ const App = () => {
   const renderPage = () => {
     if (page === "interview") {
       return <InterviewPage viewHistory={viewHistory} />;
+    }
+    if (page === "questions") {
+      return <QuestionsPage />;
     }
     if (page === "history") {
       return (
