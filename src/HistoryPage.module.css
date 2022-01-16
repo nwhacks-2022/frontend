@@ -9,7 +9,7 @@
   gap: 1.5em;
 }
 
-.history-item-wrapper > div {
+.history-item-wrapper > .question {
   min-height: 64px;
   padding-left: 1em;
 }
@@ -17,9 +17,6 @@
 .history-item-wrapper img {
   height: 64px;
   float: left;
-  /* margin-top: -0.5em;
-  margin-left: -1em;
-  margin-right: 1em; */
   margin-left: -1em;
   margin-right: 1em;
   shape-outside: ellipse(50% 35%);
@@ -37,4 +34,12 @@
 
 .history-item-wrapper .wpm {
   text-align: center;
+  font-size: 1.7em;
+  font-family: "Baloo Chettan 2", sans-serif;
+}
+
+.history-item-wrapper .variance {
+  text-align: center;
+  font-size: 1.2em;
+  font-family: "Baloo Chettan 2", sans-serif;
 }

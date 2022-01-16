@@ -67,6 +67,7 @@ const HistoryPage = (props) => {
                 question={item.question}
                 audioSrc={item.link}
                 wpm={item.wpm}
+                variance={item.variance}
               />
               {i < history.length - 1 && <div key={2 * i + 1} className="hr" />}
             </>
@@ -93,9 +94,34 @@ const HistoryItem = (props) => {
       return robotBruhImg;
     }
   };
+  const renderVariance = () => {
+    if (props.variance < 0) {
+      return null;
+    }
+    if (props.variance === undefined) {
+      return (
+        <div className={styles["variance"]}>Calculating SD of Speed...</div>
+      );
+    }
+    return (
+      <div className={styles["variance"]}>
+        SD of Speed: {Math.round(Math.sqrt(props.variance))}
+      </div>
+    );
+  };
+
+  const score = () => {
+    let wpmScore = Math.min(2.5, 30 / Math.abs(140 - props.wpm));
+    let varianceScore = wpmScore;
+    if (props.variance && props.variance >= 0) {
+      varianceScore = Math.min(2.5, 30 / Math.sqrt(props.variance));
+    }
+    return wpmScore + varianceScore;
+  };
+
   return (
     <div className={styles["history-item-wrapper"]}>
-      <div>
+      <div className={styles["question"]}>
         <img src={getImg()} alt="robot" />
         <h4>Question:</h4>
         <div>{props.question}</div>
@@ -104,7 +130,11 @@ const HistoryItem = (props) => {
       <audio controls>
         <source src={props.audioSrc} type="audio/wav" />
       </audio>
-      <h1 className={styles["wpm"]}>{Math.round(props.wpm)} WPM</h1>
+      <div className={styles["variance"]}>WPM: {Math.round(props.wpm)}</div>
+      {renderVariance()}
+      <div className={styles["wpm"]}>
+        Overall Score: {Math.round(score() * 10) / 10}
+      </div>
     </div>
   );
 };
