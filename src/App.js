@@ -14,7 +14,9 @@ const App = () => {
 
   return (
     <div className={styles["wrapper"]}>
-      <div style={{ flexGrow: 1 }}>{renderPage()}</div>
+      <div style={{ flexGrow: 1, border: "1px solid #ff0000" }}>
+        {renderPage()}
+      </div>
       <Menu setPage={setPage} />
     </div>
   );

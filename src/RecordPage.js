@@ -6,7 +6,9 @@ const RecordPage = (props) => {
     <div className={pageStyles["wrapper"]}>
       <h2>Question</h2>
       <div className={styles["question-wrapper"]}>
-        If you were an ocean animal, what would you be?
+        <div>
+          <div>If you were an ocean animal, what would you be?</div>
+        </div>
       </div>
       <div class="hr" />
       <div className={styles["time-elapsed"]}>00:00</div>
